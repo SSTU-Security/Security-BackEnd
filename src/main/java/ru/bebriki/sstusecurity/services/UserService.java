@@ -8,6 +8,7 @@ import ru.bebriki.sstusecurity.entities.User;
 import java.util.List;
 
 public interface UserService {
+    void addHoursToTotal(String email, Double hours);
     User findById(Long userId);
 
     User findByEmail(String email);
