@@ -35,7 +35,7 @@ public class AuthenticationService {
     }
 
     @Transactional
-    public void activateAccount(String token) throws MessagingException, UserNotFoundException {
+    public void  activateAccount(String token) throws MessagingException, UserNotFoundException {
         Token savedToken = tokenRepository.findByToken(token)
                 // todo exception has to be defined
                 .orElseThrow(() -> new RuntimeException("Invalid token"));

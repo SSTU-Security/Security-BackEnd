@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import ru.bebriki.sstusecurity.dtos.EventCreateDTO;
 import ru.bebriki.sstusecurity.entities.Event;
 import ru.bebriki.sstusecurity.entities.User;
+import ru.bebriki.sstusecurity.exceptions.UserNotFoundException;
 import ru.bebriki.sstusecurity.repositories.EventRepository;
 import ru.bebriki.sstusecurity.services.EventService;
 import ru.bebriki.sstusecurity.services.UserService;
@@ -19,7 +20,7 @@ public class EventServiceImpl implements EventService {
     UserService userService;
 
     @Override
-    public void create(EventCreateDTO eventCreateDTO) {
+    public void create(EventCreateDTO eventCreateDTO) throws UserNotFoundException {
         User user = userService.findById(eventCreateDTO.getUserId());
         Event event = Event.builder()
                 .user(user)
