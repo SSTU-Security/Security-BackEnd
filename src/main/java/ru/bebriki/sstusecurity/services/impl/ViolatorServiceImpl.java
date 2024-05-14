@@ -9,6 +9,8 @@ import ru.bebriki.sstusecurity.entities.Violator;
 import ru.bebriki.sstusecurity.repositories.ViolatorRepository;
 import ru.bebriki.sstusecurity.services.ViolatorService;
 
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -24,4 +26,12 @@ public class ViolatorServiceImpl implements ViolatorService {
                 .build();
         violatorRepository.save(violator);
     }
+
+    @Override
+    public int getCountOfAllViolatorsByDateTimeAfter() {
+        LocalDateTime oneHourAgo = LocalDateTime.now().minusHours(1);
+        return violatorRepository.countByDateTimeAfter(oneHourAgo);
+    }
+
+
 }

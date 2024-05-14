@@ -75,4 +75,9 @@ public class UserServiceImpl implements UserService {
     public void deleteTaskById(Long taskId) {
 
     }
+
+    @Override
+    public Integer getCountByInUniversityTrue() {
+        return userRepository.countByInUniversityTrue();
+    }
 }

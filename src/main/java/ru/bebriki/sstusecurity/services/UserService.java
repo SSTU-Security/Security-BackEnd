@@ -24,4 +24,6 @@ public interface UserService {
     List<TaskDTO> findAllByUserEmail(String email);
 
     void deleteTaskById(Long taskId);
+
+    Integer getCountByInUniversityTrue();
 }

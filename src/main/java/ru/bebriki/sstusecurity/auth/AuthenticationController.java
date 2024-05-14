@@ -26,10 +26,10 @@ public class AuthenticationController {
     }
 
     @GetMapping("/activate-account")
-    public void confirm(
+    public boolean confirm(
             @RequestParam String token
     ) throws MessagingException, UserNotFoundException {
-        service.activateAccount(token);
+        return service.activateAccount(token);
     }
 
 }

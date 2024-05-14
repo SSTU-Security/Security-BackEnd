@@ -3,6 +3,7 @@ package ru.bebriki.sstusecurity.controllers;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.bebriki.sstusecurity.dtos.TaskCreateByEmailDTO;
@@ -14,6 +15,7 @@ import ru.bebriki.sstusecurity.services.UserService;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
@@ -64,5 +66,10 @@ public class UserController {
     @DeleteMapping("/task/delete/{taskId}")
     void deleteTaskById(Long taskId) {
         userService.deleteTaskById(taskId);
+    }
+
+    @GetMapping("/university/count")
+    public ResponseEntity<Integer> getCountByInUniversityTrue() {
+        return new ResponseEntity<>(userService.getCountByInUniversityTrue(), HttpStatus.OK);
     }
 }

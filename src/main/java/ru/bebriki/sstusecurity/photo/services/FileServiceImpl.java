@@ -1,6 +1,5 @@
 package ru.bebriki.sstusecurity.photo.services;
 
-
 import io.minio.*;
 import io.minio.errors.*;
 import io.minio.http.Method;
