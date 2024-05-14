@@ -18,7 +18,7 @@ public interface EventService {
 
     Integer countByDateTimeAfter();
 
-    List<Event> findAllByDateTimeAfterAndType(LocalDateTime dateTime, EventType type);
+    List<Event> findAllByDateTimeAfterAndType(EventType type);
 
 
     void create(EventCreateDTO eventCreateDTO, MultipartFile photo) throws UserNotFoundException, ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException;

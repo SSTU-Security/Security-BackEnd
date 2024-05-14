@@ -37,6 +37,11 @@ public class EventServiceImpl implements EventService {
     FileService fileService;
 
     @Override
+    public List<Event> findAllByDateTimeAfterAndType(EventType type) {
+        return eventRepository.findAllByDateTimeAfterAndType(LocalDateTime.now().minusHours(1), IN);
+    }
+
+    @Override
     public Integer countByDateTimeAfter() {
         LocalDateTime time = LocalDateTime.now().minusHours(1);
         List<Event> events = eventRepository.findAllByDateTimeAfter(time);
