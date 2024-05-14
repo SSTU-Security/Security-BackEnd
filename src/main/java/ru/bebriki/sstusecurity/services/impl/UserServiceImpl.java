@@ -46,8 +46,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addTask(TaskCreateDTO taskCreateDTO) {
-        User user = userRepository.findById(taskCreateDTO.getUserId()).orElseThrow();
+    public void addTask(TaskCreateDTO taskCreateDTO) throws UserNotFoundException {
+        User user = findById(taskCreateDTO.getUserId());
         String text = taskCreateDTO.getText();
         Task task = Task.builder()
                 .text(text)

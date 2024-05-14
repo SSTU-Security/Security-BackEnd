@@ -13,21 +13,21 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
 
-#  app:
-#    build:
-#      context: ./
-#      dockerfile: Dockerfile
-#    container_name: app-bebriki
-#    depends_on:
-#      - postgres
-#      - minio
-#    env_file:
-#      - .env
-#    ports:
-#      - "8080:8080"
-#    restart: on-failure
-#    networks:
-#      - mynetwork
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: app-bebriki
+    depends_on:
+      - postgres
+      - minio
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    restart: on-failure
+    networks:
+      - mynetwork
 
   minio:
     image: minio/minio:latest

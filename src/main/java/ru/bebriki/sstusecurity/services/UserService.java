@@ -15,7 +15,7 @@ public interface UserService {
 
     User findByEmail(String email) throws UserNotFoundException;
 
-    void addTask(TaskCreateDTO taskCreateDTO);
+    void addTask(TaskCreateDTO taskCreateDTO) throws UserNotFoundException;
 
     List<TaskDTO> findAllByUserId(Long userId);
 
