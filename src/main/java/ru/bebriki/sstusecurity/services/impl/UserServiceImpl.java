@@ -58,26 +58,48 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<TaskDTO> findAllByUserId(Long userId) {
-        return null;
+        return taskRepository.findAllByUserId(userId).stream()
+                .map(this::toDTO).toList();
     }
 
     @Override
-    public void addTask(TaskCreateByEmailDTO taskCreateDTO) {
+    public void addTask(TaskCreateByEmailDTO taskCreateDTO) throws UserNotFoundException {
+        User user = findByEmail(taskCreateDTO.getEmail());
+        Task task = Task.builder()
+                .user(user)
+                .text(taskCreateDTO.getText())
+                .build();
 
+        taskRepository.save(task);
     }
 
     @Override
     public List<TaskDTO> findAllByUserEmail(String email) {
-        return null;
+        return taskRepository.findAllByUserEmail(email).stream()
+                .map(this::toDTO).toList();
     }
 
     @Override
     public void deleteTaskById(Long taskId) {
 
+        if (taskRepository.findById(taskId).isEmpty()) {
+            throw new RuntimeException("There is no comment with id: " + taskId);
+        }
+
+        taskRepository.deleteById(taskId);
     }
 
     @Override
     public Integer getCountByInUniversityTrue() {
         return userRepository.countByInUniversityTrue();
     }
+
+    private TaskDTO toDTO(Task task) {
+        return TaskDTO.builder()
+                .id(task.getId())
+                .text(task.getText())
+                .userId(task.getUser().getId())
+                .build();
+    }
+
 }

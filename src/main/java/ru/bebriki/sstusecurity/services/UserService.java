@@ -19,7 +19,7 @@ public interface UserService {
 
     List<TaskDTO> findAllByUserId(Long userId);
 
-    void addTask(TaskCreateByEmailDTO taskCreateDTO);
+    void addTask(TaskCreateByEmailDTO taskCreateDTO) throws UserNotFoundException;
 
     List<TaskDTO> findAllByUserEmail(String email);
 
