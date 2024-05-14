@@ -9,6 +9,7 @@ import ru.bebriki.sstusecurity.dtos.TaskCreateByEmailDTO;
 import ru.bebriki.sstusecurity.dtos.TaskCreateDTO;
 import ru.bebriki.sstusecurity.dtos.TaskDTO;
 import ru.bebriki.sstusecurity.entities.User;
+import ru.bebriki.sstusecurity.exceptions.UserNotFoundException;
 import ru.bebriki.sstusecurity.services.UserService;
 
 import java.util.List;
@@ -26,13 +27,13 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    ResponseEntity<User> findById(@PathVariable Long userId) {
+    ResponseEntity<User> findById(@PathVariable Long userId) throws UserNotFoundException {
         User user = userService.findById(userId);
         return ResponseEntity.ok(user);
     }
 
     @GetMapping("/email/{email}")
-    ResponseEntity<User> findByEmail(@PathVariable String email) {
+    ResponseEntity<User> findByEmail(@PathVariable String email) throws UserNotFoundException {
         User user = userService.findByEmail(email);
         return ResponseEntity.ok(user);
     }
