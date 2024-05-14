@@ -52,7 +52,7 @@ public class UserController {
     }
 
     @PostMapping("/email/addTask")
-    void addTask(@RequestBody TaskCreateByEmailDTO taskCreateDTO) {
+    void addTask(@RequestBody TaskCreateByEmailDTO taskCreateDTO) throws UserNotFoundException {
         userService.addTask(taskCreateDTO);
     }
 
