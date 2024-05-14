@@ -2,9 +2,6 @@ package ru.bebriki.sstusecurity.dtos;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import ru.bebriki.sstusecurity.enums.EventType;
-
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -12,9 +9,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class EventCreateDTO {
-    Long userId;
-    String image;
-    EventType type;
-    LocalDateTime dateTime;
+public class CurrentEventDataDTO {
+    Long in;
+    Long out;
+    Long people;
+    Long violators;
 }

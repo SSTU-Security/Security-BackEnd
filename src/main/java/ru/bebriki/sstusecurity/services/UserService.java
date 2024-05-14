@@ -9,7 +9,12 @@ import ru.bebriki.sstusecurity.exceptions.UserNotFoundException;
 import java.util.List;
 
 public interface UserService {
+<<<<<<< HEAD
     User findById(Long userId) throws UserNotFoundException;
+=======
+    void addHoursToTotal(String email, Double hours);
+    User findById(Long userId);
+>>>>>>> oleg
 
     User findByEmail(String email) throws UserNotFoundException;
 
