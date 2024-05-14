@@ -4,13 +4,14 @@ import ru.bebriki.sstusecurity.dtos.TaskCreateByEmailDTO;
 import ru.bebriki.sstusecurity.dtos.TaskCreateDTO;
 import ru.bebriki.sstusecurity.dtos.TaskDTO;
 import ru.bebriki.sstusecurity.entities.User;
+import ru.bebriki.sstusecurity.exceptions.UserNotFoundException;
 
 import java.util.List;
 
 public interface UserService {
-    User findById(Long userId);
+    User findById(Long userId) throws UserNotFoundException;
 
-    User findByEmail(String email);
+    User findByEmail(String email) throws UserNotFoundException;
 
     void addTask(TaskCreateDTO taskCreateDTO);
 

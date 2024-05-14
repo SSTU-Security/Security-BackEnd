@@ -9,6 +9,7 @@ import ru.bebriki.sstusecurity.dtos.TaskCreateDTO;
 import ru.bebriki.sstusecurity.dtos.TaskDTO;
 import ru.bebriki.sstusecurity.entities.Task;
 import ru.bebriki.sstusecurity.entities.User;
+import ru.bebriki.sstusecurity.exceptions.UserNotFoundException;
 import ru.bebriki.sstusecurity.repositories.TaskRepository;
 import ru.bebriki.sstusecurity.repositories.UserRepository;
 import ru.bebriki.sstusecurity.services.UserService;
@@ -19,17 +20,23 @@ import java.util.List;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class UserServiceImpl implements UserService {
+
     UserRepository userRepository;
+
     TaskRepository taskRepository;
 
     @Override
-    public User findById(Long userId) {
-        return userRepository.findById(userId).orElseThrow();
+    public User findById(Long userId) throws UserNotFoundException {
+        return userRepository.findById(userId).orElseThrow(
+                () -> new UserNotFoundException("There is no user with id: " + userId)
+        );
     }
 
     @Override
-    public User findByEmail(String email) {
-        return userRepository.findByEmail(email).orElseThrow();
+    public User findByEmail(String email) throws UserNotFoundException {
+        return userRepository.findByEmail(email).orElseThrow(
+                () -> new UserNotFoundException("There is no user with email: " + email)
+        );
     }
 
     @Override

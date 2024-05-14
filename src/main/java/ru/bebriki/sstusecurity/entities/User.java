@@ -23,4 +23,9 @@ public class User {
     String email;
     String image;
     Double totalHours;
+    Boolean isActivated;
+
+    public String getFullName() {
+        return lastname + " " + name + " " + patronymic;
+    }
 }
